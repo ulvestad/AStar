@@ -18,6 +18,8 @@ public class AStar {
 
 	//Position of current node in STRING LIST
 	public int stringPos;
+	public int boardHeigth;
+	public int boardWidth;
 
 	//Position(X,Y) of current node
 	public int currentX;
@@ -301,9 +303,13 @@ public class AStar {
 		MapReader mr = new MapReader();
 		mr.readFromFile("C:/eclipse/Prosjekter/tdt4136/src/Astar/board-1-1.txt");
 		System.out.println(mr.getMap());
-		System.out.println("height: "+ mr.getBoardHeight());
-		System.out.println("width "+ mr.getBoardWidth()/mr.getBoardHeight());
+
 		astar.map = mr.getMap();
+		astar.boardHeigth = mr.getBoardHeight();
+		astar.boardWidth = mr.getBoardWidth()/mr.getBoardHeight();
+		System.out.println("heigth "+ astar.boardHeigth);
+		System.out.println("width "+ astar.boardWidth);
+
 		System.out.println("A(y,x): "+ mr.getXPosOfA()+" "+mr.getYPosOfA());
 		System.out.println("B(y,x): "+ mr.getXPosOfB()+" "+mr.getYPosOfB() + "\n");
 
