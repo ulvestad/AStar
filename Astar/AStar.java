@@ -301,6 +301,8 @@ public class AStar {
 		MapReader mr = new MapReader();
 		mr.readFromFile("C:/eclipse/Prosjekter/tdt4136/src/Astar/board-1-1.txt");
 		System.out.println(mr.getMap());
+		System.out.println("height: "+ mr.getBoardHeight());
+		System.out.println("width "+ mr.getBoardWidth()/mr.getBoardHeight());
 		astar.map = mr.getMap();
 		System.out.println("A(y,x): "+ mr.getXPosOfA()+" "+mr.getYPosOfA());
 		System.out.println("B(y,x): "+ mr.getXPosOfB()+" "+mr.getYPosOfB() + "\n");
