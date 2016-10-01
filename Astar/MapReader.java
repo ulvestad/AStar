@@ -19,7 +19,7 @@ public class MapReader {
 	}
 
 	public int getYPosOfA(){
-		int ypos = (int)Math.floor(getIndex('A')/21);
+		int ypos = (int)Math.floor(getIndex('A')/(boardWidht/boardHeight));
 		return ypos;
 	}
 	public int getXPosOfA(){
@@ -28,11 +28,11 @@ public class MapReader {
 	}
 
 	public int getYPosOfB(){
-		int ypos = (int)Math.floor(getIndex('B')/21);
+		int ypos = (int)Math.floor(getIndex('B')/(boardWidht/boardHeight));
 		return ypos;
 	}
 	public int getXPosOfB(){
-		int xpos = (int) getIndex('B')%21;
+		int xpos = (int) getIndex('B')%(boardWidht/boardHeight);
 		return xpos;
 	}
 	public int getBoardHeight(){
@@ -54,6 +54,7 @@ public class MapReader {
 			}
 			map += (char)line;
 		}
+
 		reader.close();
 	}
 

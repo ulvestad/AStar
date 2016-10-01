@@ -102,6 +102,7 @@ public class AStar {
 			OPEN.remove(0);
 			CLOSE.add(currentPosition);
 			updatePosition(Integer.parseInt((String) currentPosition.get(0)), Integer.parseInt((String) currentPosition.get(1)));
+			System.out.println("as "+currentX +" " + mr.getXPosOfB() + "              " +currentY+" "+ mr.getYPosOfB());
 			if(currentX == mr.getXPosOfB() && currentY == mr.getYPosOfB()){
 				System.out.println("\nSUCCESS!");
 				shortestPath(CLOSE);
@@ -135,7 +136,7 @@ public class AStar {
 		for(List<String> li: shortestpath){
 			int x = Integer.parseInt(li.get(0));
 			int y = Integer.parseInt(li.get(1));
-			int sPos = x+(y*21);
+			int sPos = x+(y*boardWidth);
 			if(!(sPos == mr.getIndex('A') || sPos == mr.getIndex('B'))){
 				char[] mapChars = shortestPathMap.toCharArray();
 				mapChars[sPos] = 'O';
@@ -248,22 +249,22 @@ public class AStar {
 	public void findChildren(MapReader mr){
 		//Iteration 5: x= -1
 		if (currentY > 0){
-			char up = map.charAt((stringPos)-21);
+			char up = map.charAt((stringPos)-boardWidth);
 			if(up!='#'){
 //				System.out.println("Node UP");
 				addToChildren(generateList(mr, currentX,currentY-1, currentX,currentY));
 			}
 		}
 
-		if ( currentY < 6){
-			char down = map.charAt((stringPos)+21);
+		if ( currentY < (boardHeigth-1)){
+			char down = map.charAt((stringPos)+boardWidth);
 			if(down!='#'){
 //				System.out.println("Node DOWN");
 				addToChildren(generateList(mr, currentX,currentY+1, currentX,currentY));
 			}
 		}
 
-		if (currentX < 19){
+		if (currentX < (boardWidth-1)){
 			char rigth = map.charAt((stringPos)+1);
 			if(rigth!='#'){
 //				System.out.println("Node RIGHT");
@@ -288,7 +289,7 @@ public class AStar {
 		oldY = currentY;
 		this.currentX = nextX;
 		this.currentY = nextY;
-		stringPos = currentX + currentY*21;
+		stringPos = currentX + currentY*boardWidth;
 		//Prints out stringPos and actual current position
 		System.out.println("x:"+currentX + " y:"+currentY);
 	}
@@ -301,7 +302,7 @@ public class AStar {
 
 		//Runs MapReader, reads text file and sets up map.
 		MapReader mr = new MapReader();
-		mr.readFromFile("C:/eclipse/Prosjekter/tdt4136/src/Astar/board-1-1.txt");
+		mr.readFromFile("C:/eclipse/Prosjekter/tdt4136/src/Astar/board-2-1.txt");
 		System.out.println(mr.getMap());
 
 		astar.map = mr.getMap();
