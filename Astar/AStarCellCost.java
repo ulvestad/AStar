@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class AStar {
+public class AStarCellCost {
 	//FRAMEWORK FOR SETTING UP THE A* ALGORITHM
 	//----------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------
@@ -297,7 +297,7 @@ public class AStar {
 
 //MAIN FUNCTION
 	public static void main(String[] args) throws IOException {
-		AStar astar = new AStar();
+		AStarCellCost astar = new AStarCellCost();
 
 		//Runs MapReader, reads text file and sets up map.
 		MapReader mr = new MapReader();
