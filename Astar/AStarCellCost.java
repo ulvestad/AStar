@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 
 public class AStarCellCost {
 	//FRAMEWORK FOR SETTING UP THE A* ALGORITHM
@@ -210,7 +211,8 @@ public class AStarCellCost {
 		int fromAcost =  Math.abs(x2+y2);
 
 		//toaltcost = cost+heuristic
-		int totalCost = fromAcost + toBcost;
+		//to cope with part 2, we must add cost of cell, e.g: w=100, m=50, f=10, g=5, r=1
+		int totalCost = fromAcost + toBcost + getcellCost();
 
 		liste.add(""+x);
 		liste.add(""+y);
@@ -222,6 +224,20 @@ public class AStarCellCost {
 
 		return liste;
 
+	}
+
+	private int getcellCost() {
+		HashMap<Character, Integer> cellcosts = new HashMap<Character, Integer>();
+		cellcosts.put('w', 100);
+		cellcosts.put('m', 50);
+		cellcosts.put('f', 10);
+		cellcosts.put('g', 5);
+		cellcosts.put('r', 1);
+		char c = map.charAt(stringPos);
+		if(cellcosts.get(c) == null){
+			return 0;
+		}
+		return (int) cellcosts.get(c);
 	}
 
 	public void addToOpen(List<String> liste){
@@ -301,7 +317,7 @@ public class AStarCellCost {
 
 		//Runs MapReader, reads text file and sets up map.
 		MapReader mr = new MapReader();
-		mr.readFromFile("C:/eclipse/Prosjekter/tdt4136/src/Astar/board-2-1.txt");
+		mr.readFromFile("C:/eclipse/Prosjekter/tdt4136/src/Astar/board-2-2.txt");
 		System.out.println(mr.getMap());
 
 		astar.map = mr.getMap();
