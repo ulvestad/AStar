@@ -23,7 +23,7 @@ public class MapReader {
 		return ypos;
 	}
 	public int getXPosOfA(){
-		int xpos = (int) getIndex('A')%21;
+		int xpos = (int) getIndex('A')%(boardWidht/boardHeight);
 		return xpos;
 	}
 
