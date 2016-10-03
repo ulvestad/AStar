@@ -113,6 +113,8 @@ public class BFS {
 				System.out.println("\nSUCCESS!");
 				shortestPath(CLOSE);
 				System.out.println("Length: "+SHORTESTPATH.size());
+				System.out.println("CLOSE size: "+CLOSE.size());
+				System.out.println("OPEN size: "+OPEN.size());
 				printShortestPath(SHORTESTPATH, mr);
 //				findPath(mr);
 				break;
