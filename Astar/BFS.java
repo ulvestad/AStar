@@ -3,9 +3,11 @@ package Astar;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class BFS {
 	//FRAMEWORK FOR SETTING UP THE A* ALGORITHM
@@ -16,6 +18,10 @@ public class BFS {
 	public List<List<String>> CHILDREN = new ArrayList<List<String>>();
 	public List<List<String>> KIDS = new ArrayList<List<String>>();
 	public List<List<String>> SHORTESTPATH = new ArrayList<List<String>>();
+
+	// Using linkedlist we can maintain the open list as a FIFO queue
+	public Queue<Queue<String>> BFSOPEN=new LinkedList<Queue<String>>();
+
 
 	//Position of current node in STRING LIST
 	public int stringPos;
