@@ -138,7 +138,7 @@ public class BFS {
 		}
 	}
 
-//visualizes the shortest path by printing the route on the map, '®' means traversed
+//visualizes the shortest path by printing the route on the map, '•' means traversed
 	private void printShortestPath(List<List<String>> shortestpath, MapReader mr) {
 		String shortestPathMap = map;
 		for(List<String> li: shortestpath){
@@ -147,7 +147,7 @@ public class BFS {
 			int sPos = x+(y*boardWidth);
 			if(!(sPos == mr.getIndex('A') || sPos == mr.getIndex('B'))){
 				char[] mapChars = shortestPathMap.toCharArray();
-				mapChars[sPos] = '®';
+				mapChars[sPos] = '•';
 				shortestPathMap = String.valueOf(mapChars);
 			}
 		}
