@@ -110,6 +110,7 @@ public class Djikstra {
 				System.out.println("CLOSE size: "+CLOSE.size());
 				System.out.println("OPEN size: "+OPEN.size());
 				printShortestPath(SHORTESTPATH, mr);
+				printVisualization(CLOSE, OPEN,SHORTESTPATH, mr);
 //				findPath(mr);
 				break;
 			}
@@ -131,6 +132,42 @@ public class Djikstra {
 			CHILDREN.clear();
 		}
 	}
+
+// visualization of board, with the ope nodes marked with stars (*) and the closed nodes marked with crosses (×).
+		private void printVisualization(List<List<String>> CLOSE, List<List<String>> OPEN, List<List<String>> shortestpath, MapReader mr) {
+			String visuMap = map;
+			for(List<String> li: CLOSE){
+				int x = Integer.parseInt(li.get(0));
+				int y = Integer.parseInt(li.get(1));
+				int sPos = x+(y*boardWidth);
+				if(!(sPos == mr.getIndex('A') || sPos == mr.getIndex('B'))){
+					char[] mapChars = visuMap.toCharArray();
+					mapChars[sPos] = 'x';
+					visuMap = String.valueOf(mapChars);
+				}
+			}
+			for(List<String> li: OPEN){
+				int x = Integer.parseInt(li.get(0));
+				int y = Integer.parseInt(li.get(1));
+				int sPos = x+(y*boardWidth);
+				if(!(sPos == mr.getIndex('A') || sPos == mr.getIndex('B'))){
+					char[] mapChars = visuMap.toCharArray();
+					mapChars[sPos] = '*';
+					visuMap = String.valueOf(mapChars);
+				}
+			}
+			for(List<String> li: shortestpath){
+				int x = Integer.parseInt(li.get(0));
+				int y = Integer.parseInt(li.get(1));
+				int sPos = x+(y*boardWidth);
+				if(!(sPos == mr.getIndex('A') || sPos == mr.getIndex('B'))){
+					char[] mapChars = visuMap.toCharArray();
+					mapChars[sPos] = '•';
+					visuMap = String.valueOf(mapChars);
+				}
+			}
+			System.out.println(visuMap);
+		}
 
 //visualizes the shortest path by printing the route on the map, '•' means traversed
 	private void printShortestPath(List<List<String>> shortestpath, MapReader mr) {

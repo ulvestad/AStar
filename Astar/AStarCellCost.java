@@ -356,7 +356,7 @@ public class AStarCellCost {
 
 		//Runs MapReader, reads text file and sets up map.
 		MapReader mr = new MapReader();
-		mr.readFromFile("C:/eclipse/Prosjekter/tdt4136/src/Astar/board-2-2.txt");
+		mr.readFromFile("C:/eclipse/Prosjekter/tdt4136/src/Astar/board-2-4.txt");
 		System.out.println(mr.getMap());
 
 		astar.map = mr.getMap();
