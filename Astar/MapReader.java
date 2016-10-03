@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+//class for handling text file maps, reads and translates the map from .txt files
 public class MapReader {
 
 	private String map = "";
