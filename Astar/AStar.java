@@ -183,16 +183,7 @@ public class AStar {
 		CHILDREN.get(CHILDREN.indexOf(children1)).set(3,parentY);
 
 	}
-//Iterate through KIDS and find best parents, return whole list as "bestPath"
-//	public List<List<String>> findPath(MapReader mr){
-//		List<List<String>> bestPath = new ArrayList<List<String>>();
-//		//Iterate through KIDS and find best parents
-//		while (Integer.parseInt((String) CHILDREN.get(0).get(2)) != mr.getXPosOfA() && Integer.parseInt((String) CHILDREN.get(0).get(3)) != mr.getYPosOfA()){
-//
-//		}
-//
-//		return bestPath;
-//	}
+
 
 
 

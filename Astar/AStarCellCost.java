@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 public class AStarCellCost {
-	//FRAMEWORK FOR SETTING UP THE A* ALGORITHM
+	//FRAMEWORK FOR SETTING UP THE A* ALGORITHM WITH CELL COST
 	//----------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------
 	public List<List<String>> OPEN = new ArrayList<List<String>>();
@@ -223,16 +223,6 @@ public class AStarCellCost {
 		CHILDREN.get(CHILDREN.indexOf(children1)).set(3,parentY);
 
 	}
-//Iterate through KIDS and find best parents, return whole list as "bestPath"
-//	public List<List<String>> findPath(MapReader mr){
-//		List<List<String>> bestPath = new ArrayList<List<String>>();
-//		//Iterate through KIDS and find best parents
-//		while (Integer.parseInt((String) CHILDREN.get(0).get(2)) != mr.getXPosOfA() && Integer.parseInt((String) CHILDREN.get(0).get(3)) != mr.getYPosOfA()){
-//
-//		}
-//
-//		return bestPath;
-//	}
 
 
 
@@ -356,7 +346,7 @@ public class AStarCellCost {
 
 		//Runs MapReader, reads text file and sets up map.
 		MapReader mr = new MapReader();
-		mr.readFromFile("C:/eclipse/Prosjekter/tdt4136/src/Astar/board-1-4.txt");
+		mr.readFromFile("C:/eclipse/Prosjekter/tdt4136/src/Astar/board-2-1.txt");
 		System.out.println(mr.getMap());
 
 		astar.map = mr.getMap();
