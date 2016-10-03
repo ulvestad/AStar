@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 
-public class AStarCellCost {
+public class Djikstra {
 	//FRAMEWORK FOR SETTING UP THE A* ALGORITHM
 	//----------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------
@@ -110,7 +110,6 @@ public class AStarCellCost {
 				System.out.println("CLOSE size: "+CLOSE.size());
 				System.out.println("OPEN size: "+OPEN.size());
 				printShortestPath(SHORTESTPATH, mr);
-				printVisualization(CLOSE, OPEN,SHORTESTPATH, mr);
 //				findPath(mr);
 				break;
 			}
@@ -133,43 +132,7 @@ public class AStarCellCost {
 		}
 	}
 
-	// visualization of board, with the ope nodes marked with stars (*) and the closed nodes marked with crosses (×).
-	private void printVisualization(List<List<String>> CLOSE, List<List<String>> OPEN, List<List<String>> shortestpath, MapReader mr) {
-		String visuMap = map;
-		for(List<String> li: CLOSE){
-			int x = Integer.parseInt(li.get(0));
-			int y = Integer.parseInt(li.get(1));
-			int sPos = x+(y*boardWidth);
-			if(!(sPos == mr.getIndex('A') || sPos == mr.getIndex('B'))){
-				char[] mapChars = visuMap.toCharArray();
-				mapChars[sPos] = 'x';
-				visuMap = String.valueOf(mapChars);
-			}
-		}
-		for(List<String> li: OPEN){
-			int x = Integer.parseInt(li.get(0));
-			int y = Integer.parseInt(li.get(1));
-			int sPos = x+(y*boardWidth);
-			if(!(sPos == mr.getIndex('A') || sPos == mr.getIndex('B'))){
-				char[] mapChars = visuMap.toCharArray();
-				mapChars[sPos] = '*';
-				visuMap = String.valueOf(mapChars);
-			}
-		}
-		for(List<String> li: shortestpath){
-			int x = Integer.parseInt(li.get(0));
-			int y = Integer.parseInt(li.get(1));
-			int sPos = x+(y*boardWidth);
-			if(!(sPos == mr.getIndex('A') || sPos == mr.getIndex('B'))){
-				char[] mapChars = visuMap.toCharArray();
-				mapChars[sPos] = '•';
-				visuMap = String.valueOf(mapChars);
-			}
-		}
-		System.out.println(visuMap);
-	}
-
-	//visualizes the shortest path by printing the route on the map, '•' means traversed
+//visualizes the shortest path by printing the route on the map, '•' means traversed
 	private void printShortestPath(List<List<String>> shortestpath, MapReader mr) {
 		String shortestPathMap = map;
 		for(List<String> li: shortestpath){
@@ -251,7 +214,7 @@ public class AStarCellCost {
 
 		//toaltcost = cost+heuristic
 		//to cope with part 2, we must add cost of cell, e.g: w=100, m=50, f=10, g=5, r=1
-		int totalCost = fromAcost + toBcost + getcellCost();
+		int totalCost = fromAcost + getcellCost();
 
 		liste.add(""+x);
 		liste.add(""+y);
@@ -352,7 +315,7 @@ public class AStarCellCost {
 
 //MAIN FUNCTION
 	public static void main(String[] args) throws IOException {
-		AStarCellCost astar = new AStarCellCost();
+		Djikstra astar = new Djikstra();
 
 		//Runs MapReader, reads text file and sets up map.
 		MapReader mr = new MapReader();

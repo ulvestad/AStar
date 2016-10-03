@@ -129,7 +129,7 @@ public class AStar {
 		}
 	}
 
-//visualizes the shortest path by printing the route on the map, '®' means traversed
+//visualizes the shortest path by printing the route on the map, '•' means traversed
 	private void printShortestPath(List<List<String>> shortestpath, MapReader mr) {
 		String shortestPathMap = map;
 		for(List<String> li: shortestpath){
@@ -138,7 +138,7 @@ public class AStar {
 			int sPos = x+(y*boardWidth);
 			if(!(sPos == mr.getIndex('A') || sPos == mr.getIndex('B'))){
 				char[] mapChars = shortestPathMap.toCharArray();
-				mapChars[sPos] = '®';
+				mapChars[sPos] = '•';
 				shortestPathMap = String.valueOf(mapChars);
 			}
 		}
@@ -301,7 +301,7 @@ public class AStar {
 
 		//Runs MapReader, reads text file and sets up map.
 		MapReader mr = new MapReader();
-		mr.readFromFile("C:/eclipse/Prosjekter/tdt4136/src/Astar/board-2-1.txt");
+		mr.readFromFile("C:/eclipse/Prosjekter/tdt4136/src/Astar/board-1-1.txt");
 		System.out.println(mr.getMap());
 
 		astar.map = mr.getMap();

@@ -3,11 +3,13 @@ package Astar;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
 
-public class AStarCellCost {
+public class BFS {
 	//FRAMEWORK FOR SETTING UP THE A* ALGORITHM
 	//----------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------
@@ -16,6 +18,10 @@ public class AStarCellCost {
 	public List<List<String>> CHILDREN = new ArrayList<List<String>>();
 	public List<List<String>> KIDS = new ArrayList<List<String>>();
 	public List<List<String>> SHORTESTPATH = new ArrayList<List<String>>();
+
+	// Using linkedlist we can maintain the open list as a FIFO queue
+	public Queue<Queue<String>> BFSOPEN=new LinkedList<Queue<String>>();
+
 
 	//Position of current node in STRING LIST
 	public int stringPos;
@@ -110,7 +116,6 @@ public class AStarCellCost {
 				System.out.println("CLOSE size: "+CLOSE.size());
 				System.out.println("OPEN size: "+OPEN.size());
 				printShortestPath(SHORTESTPATH, mr);
-				printVisualization(CLOSE, OPEN,SHORTESTPATH, mr);
 //				findPath(mr);
 				break;
 			}
@@ -126,50 +131,14 @@ public class AStarCellCost {
 				if(!isInOpen(children) && !isInClose(children)){
 					//attach_and_eval(children, currentPosition);
 					addToOpen(children);
-					sortOpen(OPEN);
+					//sortOpen(OPEN);
 				}
 			}
 			CHILDREN.clear();
 		}
 	}
 
-	// visualization of board, with the ope nodes marked with stars (*) and the closed nodes marked with crosses (×).
-	private void printVisualization(List<List<String>> CLOSE, List<List<String>> OPEN, List<List<String>> shortestpath, MapReader mr) {
-		String visuMap = map;
-		for(List<String> li: CLOSE){
-			int x = Integer.parseInt(li.get(0));
-			int y = Integer.parseInt(li.get(1));
-			int sPos = x+(y*boardWidth);
-			if(!(sPos == mr.getIndex('A') || sPos == mr.getIndex('B'))){
-				char[] mapChars = visuMap.toCharArray();
-				mapChars[sPos] = 'x';
-				visuMap = String.valueOf(mapChars);
-			}
-		}
-		for(List<String> li: OPEN){
-			int x = Integer.parseInt(li.get(0));
-			int y = Integer.parseInt(li.get(1));
-			int sPos = x+(y*boardWidth);
-			if(!(sPos == mr.getIndex('A') || sPos == mr.getIndex('B'))){
-				char[] mapChars = visuMap.toCharArray();
-				mapChars[sPos] = '*';
-				visuMap = String.valueOf(mapChars);
-			}
-		}
-		for(List<String> li: shortestpath){
-			int x = Integer.parseInt(li.get(0));
-			int y = Integer.parseInt(li.get(1));
-			int sPos = x+(y*boardWidth);
-			if(!(sPos == mr.getIndex('A') || sPos == mr.getIndex('B'))){
-				char[] mapChars = visuMap.toCharArray();
-				mapChars[sPos] = '•';
-				visuMap = String.valueOf(mapChars);
-			}
-		}
-		System.out.println(visuMap);
-	}
-
-	//visualizes the shortest path by printing the route on the map, '•' means traversed
+//visualizes the shortest path by printing the route on the map, 'â€¢' means traversed
 	private void printShortestPath(List<List<String>> shortestpath, MapReader mr) {
 		String shortestPathMap = map;
 		for(List<String> li: shortestpath){
@@ -178,7 +147,7 @@ public class AStarCellCost {
 			int sPos = x+(y*boardWidth);
 			if(!(sPos == mr.getIndex('A') || sPos == mr.getIndex('B'))){
 				char[] mapChars = shortestPathMap.toCharArray();
-				mapChars[sPos] = '•';
+				mapChars[sPos] = 'â€¢';
 				shortestPathMap = String.valueOf(mapChars);
 			}
 		}
@@ -352,7 +321,7 @@ public class AStarCellCost {
 
 //MAIN FUNCTION
 	public static void main(String[] args) throws IOException {
-		AStarCellCost astar = new AStarCellCost();
+		BFS astar = new BFS();
 
 		//Runs MapReader, reads text file and sets up map.
 		MapReader mr = new MapReader();
