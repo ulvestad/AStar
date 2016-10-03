@@ -129,7 +129,7 @@ public class BFS {
 				if(!isInOpen(children) && !isInClose(children)){
 					//attach_and_eval(children, currentPosition);
 					addToOpen(children);
-					sortOpen(OPEN);
+					//sortOpen(OPEN);
 				}
 			}
 			CHILDREN.clear();

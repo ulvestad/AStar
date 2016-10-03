@@ -212,7 +212,7 @@ public class Djikstra {
 
 		//toaltcost = cost+heuristic
 		//to cope with part 2, we must add cost of cell, e.g: w=100, m=50, f=10, g=5, r=1
-		int totalCost = fromAcost  + getcellCost();
+		int totalCost = fromAcost + getcellCost();
 
 		liste.add(""+x);
 		liste.add(""+y);
