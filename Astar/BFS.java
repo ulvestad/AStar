@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 
-public class AStarCellCost {
+public class BFS {
 	//FRAMEWORK FOR SETTING UP THE A* ALGORITHM
 	//----------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------
@@ -313,7 +313,7 @@ public class AStarCellCost {
 
 //MAIN FUNCTION
 	public static void main(String[] args) throws IOException {
-		AStarCellCost astar = new AStarCellCost();
+		BFS astar = new BFS();
 
 		//Runs MapReader, reads text file and sets up map.
 		MapReader mr = new MapReader();
