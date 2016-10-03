@@ -3,13 +3,11 @@ package Astar;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedList;
 
-public class BFS {
+public class Djikstra {
 	//FRAMEWORK FOR SETTING UP THE A* ALGORITHM
 	//----------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------
@@ -18,10 +16,6 @@ public class BFS {
 	public List<List<String>> CHILDREN = new ArrayList<List<String>>();
 	public List<List<String>> KIDS = new ArrayList<List<String>>();
 	public List<List<String>> SHORTESTPATH = new ArrayList<List<String>>();
-
-	// Using linkedlist we can maintain the open list as a FIFO queue
-	public Queue<Queue<String>> BFSOPEN=new LinkedList<Queue<String>>();
-
 
 	//Position of current node in STRING LIST
 	public int stringPos;
@@ -136,7 +130,7 @@ public class BFS {
 		}
 	}
 
-//visualizes the shortest path by printing the route on the map, 'Â®' means traversed
+//visualizes the shortest path by printing the route on the map, '®' means traversed
 	private void printShortestPath(List<List<String>> shortestpath, MapReader mr) {
 		String shortestPathMap = map;
 		for(List<String> li: shortestpath){
@@ -145,7 +139,7 @@ public class BFS {
 			int sPos = x+(y*boardWidth);
 			if(!(sPos == mr.getIndex('A') || sPos == mr.getIndex('B'))){
 				char[] mapChars = shortestPathMap.toCharArray();
-				mapChars[sPos] = 'Â®';
+				mapChars[sPos] = '®';
 				shortestPathMap = String.valueOf(mapChars);
 			}
 		}
@@ -218,7 +212,7 @@ public class BFS {
 
 		//toaltcost = cost+heuristic
 		//to cope with part 2, we must add cost of cell, e.g: w=100, m=50, f=10, g=5, r=1
-		int totalCost = fromAcost + toBcost + getcellCost();
+		int totalCost = fromAcost  + getcellCost();
 
 		liste.add(""+x);
 		liste.add(""+y);
@@ -319,7 +313,7 @@ public class BFS {
 
 //MAIN FUNCTION
 	public static void main(String[] args) throws IOException {
-		BFS astar = new BFS();
+		Djikstra astar = new Djikstra();
 
 		//Runs MapReader, reads text file and sets up map.
 		MapReader mr = new MapReader();
